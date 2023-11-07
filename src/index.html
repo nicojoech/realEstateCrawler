@@ -15,13 +15,18 @@
     <div class="right-column bg-white p-8 rounded shadow-md w-96">
       <h1 class="text-2xl font-semibold mb-4">RealEstateCrawler</h1>
       <p class="text-lg text-gray-600 mb-6">Find your dream apartment in Vienna</p>
-      <form id="searchForm" class="mb-6">
+      <form id="searchForm" class="mb-6 mt-4">
         <!-- Input fields for search parameters -->
-        <!-- Example: Price per m2, district, size, etc -->
-        <input type="text" placeholder="Price per m2" class="border border-blue-500 border-opacity-50 rounded form-input mt-1 block w-full mb-4" />
-        <input type="text" placeholder="District" class="border border-blue-500 border-opacity-50 rounded form-input mt-1 block w-full mb-4" />
-        <input type="text" placeholder="Size" class="border border-blue-500 border-opacity-50 rounded form-input mt-1 block w-full mb-4" />
-        <!-- Add other search parameters as needed -->
+        <label for="pricePerM2" class="block text-gray-700 mb-1">Price per m2:</label>
+        <input type="text" id="pricePerM2" placeholder="Price per m2" class="border border-blue-500 border-opacity-50 rounded form-input mt-1 block w-full mb-4" />
+
+        <label for="district" class="block text-gray-700 mb-1">District:</label>
+        <input type="text" id="district" placeholder="District" class="border border-blue-500 border-opacity-50 rounded form-input mt-1 block w-full mb-4" />
+
+        <label for="size" class="block text-gray-700 mb-1">Size:</label>
+        <input type="text" id="size" placeholder="Size" class="border border-blue-500 border-opacity-50 rounded form-input mt-1 block w-full mb-4" />
+        <!-- Add other search parameters -->
+
         <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">Search</button>
       </form>
     </div>
