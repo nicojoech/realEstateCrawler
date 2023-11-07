@@ -659,9 +659,9 @@ video {
 }
 
 .left-column {
-  width: 100px; /* Adjust the width as needed */
-  background-color: #2d3748; /* Darker background color */
-  height: 100vh; /* Full height of the viewport */
+  width: 100px;
+  background-color: #2d3748;
+  height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -670,10 +670,10 @@ video {
 }
 
 .left-column a {
-  color: #60a5fa; /* Adjust the color as needed */
+  color: #60a5fa;
   text-decoration: none;
 }
 
 .left-column a:hover {
-  color: #93c5fd; /* Adjust the color as needed */
+  color: #93c5fd;
 }
