@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Homepage</title>
+    <link href="../dist/output.css" rel="stylesheet" />
+  </head>
+  <body class="bg-gray-100 h-screen flex">
+    <div class="left-column">
+      <a href="register.html">Register</a>
+      <a href="login.html">Login</a>
+      <a href="imprint.html">Imprint</a>
+    </div>
+    <div class="right-column bg-white p-8 rounded shadow-md w-96">
+      <h1 class="text-2xl font-semibold mb-4">RealEstateCrawler</h1>
+      <p class="text-lg text-gray-600 mb-6">Find your dream apartment in Vienna</p>
+      <form id="searchForm" class="mb-6">
+        <!-- Input fields for search parameters -->
+        <!-- Example: Price per m2, district, size, etc -->
+        <input type="text" placeholder="Price per m2" class="border border-blue-500 border-opacity-50 rounded form-input mt-1 block w-full mb-4" />
+        <input type="text" placeholder="District" class="border border-blue-500 border-opacity-50 rounded form-input mt-1 block w-full mb-4" />
+        <input type="text" placeholder="Size" class="border border-blue-500 border-opacity-50 rounded form-input mt-1 block w-full mb-4" />
+        <!-- Add other search parameters as needed -->
+        <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">Search</button>
+      </form>
+    </div>
+  </body>
+</html>
