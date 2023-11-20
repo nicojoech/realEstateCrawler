@@ -12,8 +12,17 @@ document.getElementById("registerForm").addEventListener("submit", function (e) 
     return;
   }
 
+  const userData = {
+    first_name: newFirstName,
+    last_name: newLastName,
+    email: newEmail,
+    username: newUsername,
+    hashed_password: newPassword
+  }
+
+  registerUser(userData);
+
   document.getElementById("registerForm").reset();
-  alert("Registration successful!");
 });
 
 function validateForm(firstName, lastName, email, username, password, confirmPassword) {
@@ -44,3 +53,27 @@ function validateForm(firstName, lastName, email, username, password, confirmPas
 
   return true;
 }
+
+const registerUser = async (userData) => {
+  try {
+      const response = await fetch('http://localhost:8000/users/', {
+          method: 'POST',
+          headers: {
+              'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(userData),
+      });
+
+      if (response.ok) {
+          const data = await response.json();
+          console.log(data);
+          alert("Registration successful!");
+      } else {
+          console.error('Server error:', response.statusText);
+          alert("Registration failed. Please try again.");
+      }
+  } catch (error) {
+      console.error('Error:', error);
+      alert("An unexpected error occurred. Please try again.");
+  }
+};
