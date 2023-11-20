@@ -17,7 +17,7 @@ document.getElementById("registerForm").addEventListener("submit", function (e) 
     last_name: newLastName,
     email: newEmail,
     username: newUsername,
-    hashed_password: newPassword
+    password: newPassword
   }
 
   registerUser(userData);
