@@ -10,7 +10,7 @@ document.addEventListener("DOMContentLoaded", function () {
   const navContent = `
   <div class="flex justify-between items-center">
     <h1 class="font-bold uppercase p-4 border-b border-gray-100">
-      <a href="/" class="hover:text-gray-700">Real Estate Crawler</a>
+      <a href="index.html" class="hover:text-gray-700">Real Estate Crawler</a>
     </h1>
     <div class="px-4 cursor-pointer md:hidden" id="burger">
       <svg class="w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
