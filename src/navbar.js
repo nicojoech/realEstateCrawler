@@ -59,4 +59,15 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // Insert the col1 inside the "page" div as the first child
   pageDiv.insertBefore(col1, pageDiv.firstChild);
+
+  const burger = document.getElementById("burger");
+  const menu = document.getElementById("menu");
+
+  burger.addEventListener("click", () => {
+    if (menu.classList.contains("hidden")) {
+      menu.classList.remove("hidden");
+    } else {
+      menu.classList.add("hidden");
+    }
+  });
 });
