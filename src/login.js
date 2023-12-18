@@ -1,3 +1,5 @@
+import API_URL from './config.js';
+
 document.getElementById("loginForm").addEventListener("submit", function (e) {
     e.preventDefault();
     const username = document.getElementById("username").value;
@@ -32,7 +34,7 @@ function validateLogin(username, password) {
 
 const loginUser = async (formData) => {
     try {
-        const response = await fetch('http://localhost:8000/token', {
+        const response = await fetch(`${API_URL}/token`, {
             method: 'POST',
             body: formData,
         });

@@ -1,3 +1,5 @@
+import API_URL from './config.js';
+
 document.getElementById("registerForm").addEventListener("submit", function (e) {
   e.preventDefault();
 
@@ -56,7 +58,7 @@ function validateForm(firstName, lastName, email, username, password, confirmPas
 
 const registerUser = async (userData) => {
   try {
-      const response = await fetch('http://localhost:8000/users/', {
+      const response = await fetch(`${API_URL}/users/`, {
           method: 'POST',
           headers: {
               'Content-Type': 'application/json',
