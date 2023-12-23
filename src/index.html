@@ -9,9 +9,7 @@
   <body class="h-screen flex font-montserrat">
     <div id="page" class="grid md:grid-cols-5 w-screen">
       <main class="px-16 py-6 md:col-span-4 md:max-w-full">
-        <div class="flex justify-center md:justify-end" id="accountOptions">
-          
-        </div>
+        <div class="flex justify-center md:justify-end" id="accountOptions"></div>
 
         <header>
           <h2 class="text-gray-800 text-6xl font-semibold">Create a Search Agent</h2>
@@ -20,30 +18,36 @@
 
         <div class="">
           <form id="searchForm" class="w-full max-w-lg mb-6 mt-4">
-            <div class="flex flex-wrap -mx-3 mb-4">
+            <div class="flex flex-wrap -mx-3 mb-2">
               <div class="w-full px-3">
                 <label for="agentName" class="block text-gray-800 mb-1 uppercase tracking-wide font-bold">Name for search agent</label>
                 <input type="text" id="agentName" class="border-2 border-primary border-opacity-50 rounded form-input mt-1 block w-full mb-2" />
               </div>
             </div>
-            <div class="flex flex-wrap -mx-3 mb-4">
+            <div class="flex flex-wrap -mx-3 mb-2">
               <div class="w-full md:w-1/2 px-3 md:mb-0">
                 <label for="minArea" class="block text-gray-800 mb-1 uppercase tracking-wide font-bold">Minimum Area (m2)</label>
-                <input type="text" id="minArea" class="border-2 border-primary border-opacity-50 rounded form-input mt-1 block mb-2" />
+                <input type="text" id="minArea" class="border-2 border-primary border-opacity-50 rounded form-input mt-1 block mb-2 w-full" />
               </div>
               <div class="w-full md:w-1/2 px-3">
                 <label for="maxPrice" class="block text-gray-800 mb-1 uppercase tracking-wide font-bold">Maximum Price (€)</label>
-                <input type="text" id="maxPrice" class="border-2 border-primary border-opacity-50 rounded form-input mt-1 block mb-2" />
+                <input type="text" id="maxPrice" class="border-2 border-primary border-opacity-50 rounded form-input mt-1 block mb-2 w-full" />
               </div>
             </div>
-            <div class="flex flex-wrap -mx-3 mb-4">
+            <div class="flex flex-wrap -mx-3 mb-2">
               <div class="w-full md:w-1/2 px-3 md:mb-0">
-                <label for="postalCode" class="block text-gray-800 mb-1 uppercase tracking-wide font-bold">Postal Code</label>
-                <input type="text" id="postalCode" class="border-2 border-primary border-opacity-50 rounded form-input mt-1 block mb-2" />
+                <label for="numRooms" class="block text-gray-800 mb-1 uppercase tracking-wide font-bold">Number of Rooms</label>
+                <input type="number" id="numRooms" class="border-2 border-primary border-opacity-50 rounded form-input mt-1 block w-full mb-2" />
               </div>
               <div class="w-full md:w-1/2 px-3">
+                <label for="postalCode" class="block text-gray-800 mb-1 uppercase tracking-wide font-bold">Postal Code</label>
+                <input type="text" id="postalCode" class="border-2 border-primary border-opacity-50 rounded form-input mt-1 block mb-2 w-full" />
+              </div>
+            </div>
+            <div class="flex flex-wrap -mx-3 mb-2">
+              <div class="w-full px-3">
                 <label for="state" class="block text-gray-800 mb-1 uppercase tracking-wide font-bold">Federal Province</label>
-                <select id="state" class="border-2 border-primary border-opacity-50 rounded form-select mt-1 block mb-2">
+                <select id="state" class="border-2 border-primary border-opacity-50 rounded form-select mt-1 block mb-2 w-full">
                   <option value="" disabled selected>Select Federal Province</option>
                   <option value="Burgenland">Burgenland</option>
                   <option value="Kärnten">Carinthia</option>
@@ -57,10 +61,18 @@
                 </select>
               </div>
             </div>
-            <div class="flex flex-wrap -mx-3 mb-4">
-              <div class="w-full px-3 mb-2">
-                <label for="numRooms" class="block text-gray-800 mb-1 uppercase tracking-wide font-bold">Number of Rooms</label>
-                <input type="number" id="numRooms" class="border-2 border-primary border-opacity-50 rounded form-input mt-1 block w-full mb-2" />
+            <div class="flex flex-wrap -mx-3 mb-2">
+              <div class="w-full md:w-1/2 px-3 mb-2">
+                <label for="buyRent" class="block text-gray-800 mb-1 uppercase tracking-wide font-bold">Buy / Rent</label>
+                <select id="buyRent" class="border-2 border-primary border-opacity-50 rounded form-select mt-1 block mb-2 w-full">
+                  <option value="rent">Rent</option>
+                </select>
+              </div>
+              <div class="w-full md:w-1/2 px-3 mb-2">
+                <label for="propertyType" class="block text-gray-800 mb-1 uppercase tracking-wide font-bold">Type</label>
+                <select id="propertyType" class="border-2 border-primary border-opacity-50 rounded form-select mt-1 block mb-2 w-full">
+                  <option value="apartment">Apartment</option>
+                </select>
               </div>
             </div>
             <!-- Add other search parameters -->
