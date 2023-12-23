@@ -15,21 +15,76 @@
           <h2 class="text-gray-800 text-6xl mb-3 font-semibold">Settings</h2>
         </header>
 
-        <div class="mb-3">
-          <div class="max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow">
-            <a href="#">
-              <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900">Search Agent Name</h5>
-            </a>
-            <p class="mb-3 font-normal text-gray-700">Parameters of search agent</p>
-            <a href="#" class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-red-700 rounded-lg hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300"> Delete </a>
+        <div class="mb-6">
+          <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900">Upgrade to RealEstateCrawler Pro!</h5>
+          <p class="mb-3 text-sm text-gray-700">Unlock premium features and enhance your real estate search experience.</p>
+          <ul class="list-disc ml-4 mb-2 text-sm">
+            <li>Create an unlimited number of search agents</li>
+            <li>Save your found apartments</li>
+            <li>Ad-Free Experience</li>
+            <li>Document Management to easily apply</li>
+            <li>and many more...</li>
+          </ul>
+          <button class="btn text-primary border-primary border-2 hover:bg-primary hover:text-white t-ease">Upgrade to Pro</button>
+        </div>
+
+        <div class="mb-6">
+          <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900">General</h5>
+          <label class="relative inline-flex items-center cursor-pointer">
+            <input type="checkbox" value="" class="sr-only peer" />
+            <div class="w-11 h-6 bg-gray-200 rounded-full peer peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary"></div>
+            <span class="ms-3 text-sm font-medium text-gray-900">Dark Mode</span>
+          </label>
+
+          <label for="language" class="block text-sm font-medium text-gray-700">Language</label>
+          <select id="language" name="language" class="border-2 border-primary border-opacity-50 rounded form-select">
+            <option value="en">English</option>
+            <option value="es">German</option>
+          </select>
+        </div>
+
+        <div class="mb-6">
+          <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900">Notifications</h5>
+          <label class="relative inline-flex items-center cursor-pointer">
+            <input type="checkbox" value="" class="sr-only peer" checked />
+            <div class="w-11 h-6 bg-gray-200 rounded-full peer peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary"></div>
+            <span class="ms-3 text-sm font-medium text-gray-900">Receive E-Mail Notifications</span>
+          </label>
+
+          <label for="emailFrequency" class="block text-sm font-medium text-gray-700">Email Frequency</label>
+          <select id="emailFrequency" name="emailFrequency" class="border-2 border-primary border-opacity-50 rounded form-select">
+            <option value="newFound">Every New Apartment</option>
+            <option value="daily">Daily</option>
+            <option value="weekly">Weekly</option>
+          </select>
+        </div>
+
+        <div class="mb-6">
+          <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900">Accessibility</h5>
+          <label for="fontAdjustment" class="block text-sm font-medium text-gray-700">Font Size Adjustment</label>
+          <select id="fontAdjustment" name="fontAdjustment" class="border-2 border-primary border-opacity-50 rounded form-select mb-3">
+            <option value="small">Small</option>
+            <option value="medium">Medium</option>
+            <option value="large">Large</option>
+          </select>
+        </div>
+
+        <div class="mb-6">
+          <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900">Security & Privacy</h5>
+          <label class="relative inline-flex items-center cursor-pointer">
+            <input type="checkbox" value="" class="sr-only peer" />
+            <div class="w-11 h-6 bg-gray-200 rounded-full peer peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary"></div>
+            <span class="ms-3 text-sm font-medium text-gray-900">Active 2-Factor Authorization</span>
+          </label>
+          <div>
+            <label class="relative inline-flex items-center cursor-pointer">
+              <input type="checkbox" value="" class="sr-only peer" checked />
+              <div class="w-11 h-6 bg-gray-200 rounded-full peer peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary"></div>
+              <span class="ms-3 text-sm font-medium text-gray-900">Share your user data for analytics</span>
+            </label>
           </div>
         </div>
 
-        <label class="relative inline-flex items-center cursor-pointer">
-          <input type="checkbox" value="" class="sr-only peer" checked />
-          <div class="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 rounded-full peer peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary"></div>
-          <span class="ms-3 text-sm font-medium text-gray-900">Receive E-Mail Notifications</span>
-        </label>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.0/flowbite.min.js"></script>
 
         <script>
