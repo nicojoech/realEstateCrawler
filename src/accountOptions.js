@@ -24,23 +24,14 @@ function renderLogoutButtons(parentElement, username) {
   const logoutButton = createButton("Logout", "#", handleLogout);
   parentElement.appendChild(logoutButton);
 
-  const userButton = createButton(username || "User", "#", handleUserPage);
+  const userButton = createButton(username || "User", "#profile.html", handleUserPage);
   parentElement.appendChild(userButton);
 }
 
 function createButton(text, href, clickHandler) {
   const button = document.createElement("a");
   button.href = href;
-  button.classList.add(
-    "btn",
-    "text-primary",
-    "ml-2",
-    "border-primary",
-    "border-2",
-    "hover:bg-primary",
-    "hover:text-white",
-    "t-ease"
-  );
+  button.classList.add("btn", "text-primary", "ml-2", "border-primary", "border-2", "hover:bg-primary", "hover:text-white", "t-ease");
   button.textContent = text;
 
   if (clickHandler) {
