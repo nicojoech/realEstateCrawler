@@ -1,9 +1,64 @@
-<div class="mb-3">
-  <div class="max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow">
-    <a href="#">
-      <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900">Search Agent Name</h5>
-    </a>
-    <p class="mb-3 font-normal text-gray-700">Parameters of search agent</p>
-    <a href="#" class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-red-700 rounded-lg hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300"> Delete </a>
-  </div>
-</div>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Profile - RealEstateCrawler</title>
+    <link href="../dist/output.css" rel="stylesheet" />
+  </head>
+  <body class="h-screen flex font-montserrat">
+    <div id="page" class="grid md:grid-cols-5 w-screen">
+      <main class="px-16 py-6 md:col-span-4">
+        <div class="flex justify-center md:justify-end" id="accountOptions"></div>
+
+        <header>
+          <h2 class="text-gray-800 text-6xl font-semibold">Profile</h2>
+        </header>
+
+        <div class="mb-6">
+          <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900">Data</h5>
+          <form id="profileForm" class="w-full max-w-lg mb-6 mt-4">
+            <div class="flex flex-wrap -mx-3 mb-2">
+              <div class="w-full md:w-1/2 px-3 md:mb-0">
+                <label for="profileFirstName" class="block text-gray-800 mb-1 uppercase tracking-wide font-bold">First Name</label>
+                <input type="text" id="profileFirstName" class="border-2 border-primary border-opacity-50 rounded form-input mt-1 block mb-2 w-full" />
+              </div>
+              <div class="w-full md:w-1/2 px-3">
+                <label for="profileLastName" class="block text-gray-800 mb-1 uppercase tracking-wide font-bold">Last name</label>
+                <input type="text" id="profileLastName" class="border-2 border-primary border-opacity-50 rounded form-input mt-1 block mb-2 w-full" />
+              </div>
+            </div>
+            <div class="flex flex-wrap -mx-3 mb-2">
+              <div class="w-full md:w-1/2 px-3 md:mb-0">
+                <label for="profileEmail" class="block text-gray-800 mb-1 uppercase tracking-wide font-bold">E-Mail</label>
+                <input type="text" id="profileEmail" class="border-2 border-primary border-opacity-50 rounded form-input mt-1 block mb-2 w-full" />
+              </div>
+              <div class="w-full md:w-1/2 px-3">
+                <label for="profileUsername" class="block text-gray-800 mb-1 uppercase tracking-wide font-bold">Username</label>
+                <input type="text" id="profileUsername" class="border-2 border-primary border-opacity-50 rounded form-input mt-1 block mb-2 w-full" />
+              </div>
+            </div>
+            <button type="submit" class="btn text-primary border-primary border-2 hover:bg-primary hover:text-white t-ease">Change Password</button>
+            <button type="submit" class="btn text-primary border-primary border-2 hover:bg-primary hover:text-white t-ease">Delete Account</button>
+          </form>
+        </div>
+
+        <div class="mb-6">
+          <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900">Search Agents</h5>
+          <div class="max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow">
+            <a href="#">
+              <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900">Search Agent Name</h5>
+            </a>
+            <p class="mb-3 font-normal text-gray-700">Parameters of search agent</p>
+            <a href="#" class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-red-700 rounded-lg hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300"> Delete </a>
+          </div>
+        </div>
+      </main>
+    </div>
+    <script>
+      const currentPage = "profile";
+    </script>
+    <script src="navbar.js"></script>
+    <script src="accountOptions.js"></script>
+  </body>
+</html>
