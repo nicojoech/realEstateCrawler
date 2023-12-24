@@ -45,7 +45,7 @@ function handleLogout() {
   localStorage.removeItem("accessToken");
   localStorage.removeItem("username");
   window.location.href = "login.html";
-  consolge.log("test");
+  console.log("test");
 }
 
 function handleUserPage() {
