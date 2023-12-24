@@ -24,7 +24,7 @@ function renderLogoutButtons(parentElement, username) {
   const logoutButton = createButton("Logout", "#", handleLogout);
   parentElement.appendChild(logoutButton);
 
-  const userButton = createButton(username || "User", "#profile.html", handleUserPage);
+  const userButton = createButton(username || "User", "profile.html", handleUserPage);
   parentElement.appendChild(userButton);
 }
 
