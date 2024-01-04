@@ -1,3 +1,16 @@
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    // Überprüfe, ob ein access_token im Local Storage vorhanden ist
+    const accessToken = localStorage.getItem("accessToken");
+
+    if (!accessToken) {
+        // Redirect oder andere Maßnahmen für nicht authentifizierte Benutzer
+        window.location.href = "login.html"; // Beispiel: Weiterleitung zur Login-Seite
+    }
+  })
+</script>
+
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -51,6 +64,6 @@
     </script>
     <script src="navbar.js"></script>
     <script src="accountOptions.js"></script>
-    <script src="profile.js"></script>
+    <script type="module" src="profile.js"></script>
   </body>
 </html>
