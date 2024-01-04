@@ -7,10 +7,6 @@ document.addEventListener("DOMContentLoaded", function () {
     searchForm.addEventListener("submit", function (event) {
       event.preventDefault();
       const loggedIn = localStorage.getItem("accessToken");
-      if (!loggedIn) {
-        alert("Log in to create a crawler agent!");
-        return;
-      }
 
       var agentName = document.getElementById("agentName").value;
       var minArea = document.getElementById("minArea").value;
@@ -18,6 +14,11 @@ document.addEventListener("DOMContentLoaded", function () {
       var numRooms = document.getElementById("numRooms").value;
       var postalCode = document.getElementById("postalCode").value;
       var state = document.getElementById("state").value;
+
+      // Validate the form input
+      if (!validateAgentForm(agentName, minArea, maxPrice, numRooms, postalCode, state)) {
+        return;
+      }
 
       var agentData = {
         name: agentName,
@@ -49,3 +50,35 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
 });
+
+function validateAgentForm(agentName, minArea, maxPrice, numRooms, postalCode, state) {
+  if (!agentName) {
+    alert("Please fill out all required fields marked with *.");
+    return false;
+  }
+
+  if (agentName.length > 50) {
+    alert("Agent name is too long. Please enter a shorter name.");
+    return false;
+  }
+
+  if (isNaN(minArea) || isNaN(maxPrice) || isNaN(numRooms) || isNaN(postalCode)) {
+    alert("Minimum area, maximum price, number of rooms and postal code must be numeric values.");
+    return false;
+  }
+
+  if (minArea < 0 || maxPrice < 0 || numRooms < 0 || postalCode < 0) {
+    alert("Values for minimum area, maximum price, number of rooms and postal code must be non-negative.");
+    return false;
+  }
+
+  if (postalCode) {
+    const postalCodePattern = /^\d{4}$/;
+    if (!postalCodePattern.test(postalCode)) {
+      alert("Invalid postal code format. Please enter a valid 4-digit postal code.");
+      return false;
+    }
+  }
+
+  return true;
+}
