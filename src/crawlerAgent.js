@@ -7,6 +7,10 @@ document.addEventListener("DOMContentLoaded", function () {
     searchForm.addEventListener("submit", function (event) {
       event.preventDefault();
       const loggedIn = localStorage.getItem("accessToken");
+      if (!loggedIn) {
+        alert("Log in to create a crawler agent!");
+        return;
+      }
 
       var agentName = document.getElementById("agentName").value;
       var minArea = document.getElementById("minArea").value;
@@ -54,6 +58,11 @@ document.addEventListener("DOMContentLoaded", function () {
 function validateAgentForm(agentName, minArea, maxPrice, numRooms, postalCode, state) {
   if (!agentName) {
     alert("Please fill out all required fields marked with *.");
+    return false;
+  }
+
+  if (!minArea || !maxPrice || !numRooms || !postalCode || !state) {
+    alert("Please fill out at least one of the search parameters.");
     return false;
   }
 
