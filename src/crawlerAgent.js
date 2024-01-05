@@ -4,6 +4,25 @@ document.addEventListener("DOMContentLoaded", function () {
   var searchForm = document.getElementById("searchForm");
 
   if (searchForm) {
+    // Add event listeners to postalCode and state fields
+    var postalCodeField = document.getElementById("postalCode");
+    var stateField = document.getElementById("state");
+
+    postalCodeField.addEventListener("input", function () {
+      // If postalCode is not empty, disable the state dropdown
+      stateField.disabled = !!this.value.trim();
+      stateField.classList.toggle("border-gray-300", stateField.disabled);
+      stateField.classList.toggle("border-primary", !stateField.disabled);
+    });
+
+    stateField.addEventListener("change", function () {
+      // If state is selected, clear postalCode and disable the input
+      postalCodeField.value = "";
+      postalCodeField.disabled = !!this.value.trim();
+      postalCodeField.classList.toggle("border-gray-300", postalCodeField.disabled);
+      postalCodeField.classList.toggle("border-primary", !postalCodeField.disabled);
+    });
+
     searchForm.addEventListener("submit", function (event) {
       event.preventDefault();
       const loggedIn = localStorage.getItem("accessToken");
@@ -52,6 +71,26 @@ document.addEventListener("DOMContentLoaded", function () {
           console.error("Error:", error);
         });
     });
+
+    // Add event listener for the "Reset Form" button
+    var resetButton = document.getElementById("resetButton");
+
+    if (resetButton) {
+      resetButton.addEventListener("click", function () {
+        // Reset the form when the "Reset Form" button is clicked
+        searchForm.reset();
+
+        // Reset the visual styles for postalCode and state
+        stateField.disabled = false;
+        stateField.classList.remove("border-gray-300");
+        stateField.classList.add("border-primary");
+
+        postalCodeField.value = "";
+        postalCodeField.disabled = false;
+        postalCodeField.classList.remove("border-gray-300");
+        postalCodeField.classList.add("border-primary");
+      });
+    }
   }
 });
 
@@ -85,6 +124,11 @@ function validateAgentForm(agentName, minArea, maxPrice, numRooms, postalCode, s
     const postalCodePattern = /^\d{4}$/;
     if (!postalCodePattern.test(postalCode)) {
       alert("Invalid postal code format. Please enter a valid 4-digit postal code.");
+      return false;
+    }
+
+    if (postalCode.startsWith("0")) {
+      alert("Postal code cannot start with 0.");
       return false;
     }
   }
