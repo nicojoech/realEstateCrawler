@@ -19,8 +19,14 @@ document.addEventListener("DOMContentLoaded", function () {
       // If state is selected, clear postalCode and disable the input
       postalCodeField.value = "";
       postalCodeField.disabled = !!this.value.trim();
-      postalCodeField.classList.toggle("border-gray-300", postalCodeField.disabled);
-      postalCodeField.classList.toggle("border-primary", !postalCodeField.disabled);
+      postalCodeField.classList.toggle(
+        "border-gray-300",
+        postalCodeField.disabled
+      );
+      postalCodeField.classList.toggle(
+        "border-primary",
+        !postalCodeField.disabled
+      );
     });
 
     searchForm.addEventListener("submit", function (event) {
@@ -39,7 +45,16 @@ document.addEventListener("DOMContentLoaded", function () {
       var state = document.getElementById("state").value;
 
       // Validate the form input
-      if (!validateAgentForm(agentName, minArea, maxPrice, numRooms, postalCode, state)) {
+      if (
+        !validateAgentForm(
+          agentName,
+          minArea,
+          maxPrice,
+          numRooms,
+          postalCode,
+          state
+        )
+      ) {
         return;
       }
 
@@ -47,7 +62,7 @@ document.addEventListener("DOMContentLoaded", function () {
         name: agentName,
         min_area: minArea,
         max_price: maxPrice,
-        number_of_rooms: numRooms,
+        number_of_rooms: Number(numRooms),
         zip_code: postalCode,
         state: state,
         user_id: localStorage.getItem("userId"),
@@ -94,13 +109,21 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 });
 
-function validateAgentForm(agentName, minArea, maxPrice, numRooms, postalCode, state) {
+function validateAgentForm(
+  agentName,
+  minArea,
+  maxPrice,
+  numRooms,
+  postalCode,
+  state
+) {
   if (!agentName) {
     alert("Please fill out all required fields marked with *.");
     return false;
   }
 
-  if (!minArea || !maxPrice || !numRooms || !postalCode || !state) {
+  if (minArea || maxPrice || numRooms || postalCode || state) {
+  } else {
     alert("Please fill out at least one of the search parameters.");
     return false;
   }
@@ -110,20 +133,31 @@ function validateAgentForm(agentName, minArea, maxPrice, numRooms, postalCode, s
     return false;
   }
 
-  if (isNaN(minArea) || isNaN(maxPrice) || isNaN(numRooms) || isNaN(postalCode)) {
-    alert("Minimum area, maximum price, number of rooms and postal code must be numeric values.");
+  if (
+    isNaN(minArea) ||
+    isNaN(maxPrice) ||
+    isNaN(numRooms) ||
+    isNaN(postalCode)
+  ) {
+    alert(
+      "Minimum area, maximum price, number of rooms and postal code must be numeric values."
+    );
     return false;
   }
 
   if (minArea < 0 || maxPrice < 0 || numRooms < 0 || postalCode < 0) {
-    alert("Values for minimum area, maximum price, number of rooms and postal code must be non-negative.");
+    alert(
+      "Values for minimum area, maximum price, number of rooms and postal code must be non-negative."
+    );
     return false;
   }
 
   if (postalCode) {
     const postalCodePattern = /^\d{4}$/;
     if (!postalCodePattern.test(postalCode)) {
-      alert("Invalid postal code format. Please enter a valid 4-digit postal code.");
+      alert(
+        "Invalid postal code format. Please enter a valid 4-digit postal code."
+      );
       return false;
     }
 
