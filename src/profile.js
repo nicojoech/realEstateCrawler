@@ -90,6 +90,14 @@ const fetchAgents = async (id) => {
         maxPriceItem.textContent = "Max Price: " + agent.max_price;
         paramsList.appendChild(maxPriceItem);
 
+        var numberOfRoomsItem = document.createElement("li");
+        numberOfRoomsItem.textContent = "Rooms: " + agent.number_of_rooms;
+        paramsList.appendChild(numberOfRoomsItem);
+
+        var zipItem = document.createElement("li");
+        zipItem.textContent = "Zip Code: " + agent.zip_code;
+        paramsList.appendChild(zipItem);
+
         var stateItem = document.createElement("li");
         stateItem.textContent = "State: " + agent.state;
         paramsList.appendChild(stateItem);
@@ -99,17 +107,63 @@ const fetchAgents = async (id) => {
         deleteButton.className =
           "btn text-primary border-primary border-2 hover:bg-primary hover:text-white t-ease mr-2";
         deleteButton.textContent = "Delete";
+        deleteButton.addEventListener("click", function () {
+          let agentId = agent.id;
+          deleteCrawlerById(agentId);
+          window.location.href = "profile.html";
+        });
 
         var editButton = document.createElement("button");
         editButton.type = "submit";
         editButton.className =
           "btn text-primary border-primary border-2 hover:bg-primary hover:text-white t-ease";
         editButton.textContent = "Edit";
+        editButton.addEventListener("click", function () {
+          let agentId = agent.id;
+          localStorage.setItem("agentId", agentId);
+          window.location.href = "updateAgent.html";
+        });
+
+        var startButton = document.createElement("button");
+        startButton.type = "submit";
+        startButton.className =
+          "btn text-primary border-primary border-2 hover:bg-primary hover:text-white t-ease float-right";
+        startButton.textContent = "Start";
+        startButton.id = agent.id;
+        startButton.addEventListener("click", function () {
+          let id = startButton.id;
+          startCrawlerById(id);
+          startButton.style.display = "none";
+          stopButton.style.display = "block";
+        });
+
+        var stopButton = document.createElement("button");
+        stopButton.type = "submit";
+        stopButton.className =
+          "btn text-primary border-primary border-2 hover:bg-primary hover:text-white t-ease float-right";
+        stopButton.textContent = "Stop";
+        stopButton.id = agent.id;
+        stopButton.addEventListener("click", function () {
+          let id = stopButton.id;
+          stopCrawlerById(id);
+          startButton.style.display = "block";
+          stopButton.style.display = "none";
+        });
+
+        if (agent.inUse) {
+          startButton.style.display = "none";
+          stopButton.style.display = "block";
+        } else {
+          startButton.style.display = "block";
+          stopButton.style.display = "none";
+        }
 
         innerDiv.appendChild(cardTitle);
         innerDiv.appendChild(paramsList);
         innerDiv.appendChild(deleteButton);
         innerDiv.appendChild(editButton);
+        innerDiv.appendChild(startButton);
+        innerDiv.appendChild(stopButton);
 
         divContainer.appendChild(innerDiv);
       });
@@ -123,5 +177,56 @@ const fetchAgents = async (id) => {
   } catch (error) {
     console.error("Error:", error);
     alert("An unexpected error occurred. Please try again.");
+  }
+};
+
+const startCrawlerById = async (id) => {
+  try {
+    const response = await fetch(`${API_URL}/agents/start/${id}`, {
+      method: "POST",
+    });
+
+    if (!response.ok) {
+      throw new Error("Network response was not ok");
+    }
+
+    const data = await response.json();
+    console.log(data);
+  } catch (error) {
+    console.error("Error:", error);
+  }
+};
+
+const stopCrawlerById = async (id) => {
+  try {
+    const response = await fetch(`${API_URL}/agents/stop/${id}`, {
+      method: "POST",
+    });
+
+    if (!response.ok) {
+      throw new Error("Network response was not ok");
+    }
+
+    const data = await response.json();
+    console.log(data);
+  } catch (error) {
+    console.error("Error:", error);
+  }
+};
+
+const deleteCrawlerById = async (id) => {
+  try {
+    const response = await fetch(`${API_URL}/agents/${id}`, {
+      method: "DELETE",
+    });
+
+    if (!response.ok) {
+      throw new Error("Network response was not ok");
+    }
+
+    const data = await response.json();
+    console.log(data);
+  } catch (error) {
+    console.error("Error:", error);
   }
 };

@@ -1,16 +1,25 @@
 import API_URL from "./config.js";
 
 document.addEventListener("DOMContentLoaded", function () {
-  var searchForm = document.getElementById("searchForm");
+  const agentId = localStorage.getItem("agentId");
+  //console.log(document.getElementById("updateState").value);
+  if (agentId) {
+    fetchAgentData(agentId);
+  } else {
+    alert("No agent selected");
+  }
 
-  if (searchForm) {
+  const updateForm = document.getElementById("updateForm");
+
+  if (updateForm) {
     // Add event listeners to postalCode and state fields
-    var postalCodeField = document.getElementById("postalCode");
-    var stateField = document.getElementById("state");
+    var postalCodeField = document.getElementById("updatePostalCode");
+    var stateField = document.getElementById("updateState");
 
     postalCodeField.addEventListener("input", function () {
       // If postalCode is not empty, disable the state dropdown
       stateField.disabled = !!this.value.trim();
+      stateField.value = "";
       stateField.classList.toggle("border-gray-300", stateField.disabled);
       stateField.classList.toggle("border-primary", !stateField.disabled);
     });
@@ -29,20 +38,20 @@ document.addEventListener("DOMContentLoaded", function () {
       );
     });
 
-    searchForm.addEventListener("submit", function (event) {
+    updateForm.addEventListener("submit", function (event) {
       event.preventDefault();
       const loggedIn = localStorage.getItem("accessToken");
       if (!loggedIn) {
-        alert("Log in to create a crawler agent!");
+        alert("Log in to update a crawler agent!");
         return;
       }
 
-      var agentName = document.getElementById("agentName").value;
-      var minArea = document.getElementById("minArea").value;
-      var maxPrice = document.getElementById("maxPrice").value;
-      var numRooms = document.getElementById("numRooms").value;
-      var postalCode = document.getElementById("postalCode").value;
-      var state = document.getElementById("state").value;
+      var agentName = document.getElementById("updateAgentName").value;
+      var minArea = document.getElementById("updateMinArea").value;
+      var maxPrice = document.getElementById("updateMaxPrice").value;
+      var numRooms = document.getElementById("updateNumRooms").value;
+      var postalCode = document.getElementById("updatePostalCode").value;
+      var state = document.getElementById("updateState").value;
 
       // Validate the form input
       if (
@@ -70,9 +79,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
       console.log(agentData);
 
-      // Beispiel: Sende die Daten an das Backend mit fetch
-      fetch(`${API_URL}/agents/`, {
-        method: "POST",
+      fetch(`${API_URL}/agents/${agentId}`, {
+        method: "PUT",
         body: JSON.stringify(agentData),
         headers: {
           "Content-Type": "application/json",
@@ -87,15 +95,12 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     });
 
-    // Add event listener for the "Reset Form" button
-    var resetButton = document.getElementById("resetButton");
+    var updateResetButton = document.getElementById("updateResetButton");
 
-    if (resetButton) {
-      resetButton.addEventListener("click", function () {
-        // Reset the form when the "Reset Form" button is clicked
-        searchForm.reset();
+    if (updateResetButton) {
+      updateResetButton.addEventListener("click", function () {
+        updateForm.reset();
 
-        // Reset the visual styles for postalCode and state
         stateField.disabled = false;
         stateField.classList.remove("border-gray-300");
         stateField.classList.add("border-primary");
@@ -108,6 +113,55 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   }
 });
+
+const fetchAgentData = async (agentId) => {
+  try {
+    const response = await fetch(`${API_URL}/agents/${agentId}`, {
+      method: "GET",
+      headers: {
+        Authorization: "Bearer " + localStorage.getItem("accessToken"),
+      },
+    });
+
+    if (response.ok) {
+      const data = await response.json();
+      console.log(data);
+
+      const name = data.name;
+      const minArea = data.min_area;
+      const maxPrice = data.max_price;
+      const numOfRooms = data.number_of_rooms;
+      const zipCode = data.zip_code;
+      const state = data.state;
+
+      document.getElementById("updateAgentName")?.setAttribute("value", name);
+      document.getElementById("updateMinArea")?.setAttribute("value", minArea);
+      document
+        .getElementById("updateMaxPrice")
+        ?.setAttribute("value", maxPrice);
+      document
+        .getElementById("updateNumRooms")
+        ?.setAttribute("value", numOfRooms);
+      document
+        .getElementById("updatePostalCode")
+        ?.setAttribute("value", zipCode);
+      var updateStateSelect = document.getElementById("updateState");
+
+      for (var i = 0; i < updateStateSelect.options.length; i++) {
+        if (updateStateSelect.options[i].value === state) {
+          updateStateSelect.options[i].selected = true;
+          break;
+        }
+      }
+    } else {
+      console.error("Server error:", response.statusText);
+      alert("Failed to fetch user profile. Please try again.");
+    }
+  } catch (error) {
+    console.error("Error:", error);
+    alert("An unexpected error occurred. Please try again.");
+  }
+};
 
 function validateAgentForm(
   agentName,
