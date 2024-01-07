@@ -90,25 +90,39 @@ const fetchAgents = async (id) => {
         maxPriceItem.textContent = "Max Price: " + agent.max_price;
         paramsList.appendChild(maxPriceItem);
 
-        var stateItem = document.createElement("li");
-        stateItem.textContent = "State: " + agent.state;
-        paramsList.appendChild(stateItem);
+        var numberOfRoomsItem = document.createElement("li");
+        numberOfRoomsItem.textContent = "Rooms: " + agent.number_of_rooms;
+        paramsList.appendChild(numberOfRoomsItem);
 
         var zipItem = document.createElement("li");
         zipItem.textContent = "Zip Code: " + agent.zip_code;
         paramsList.appendChild(zipItem);
+
+        var stateItem = document.createElement("li");
+        stateItem.textContent = "State: " + agent.state;
+        paramsList.appendChild(stateItem);
 
         var deleteButton = document.createElement("button");
         deleteButton.type = "submit";
         deleteButton.className =
           "btn text-primary border-primary border-2 hover:bg-primary hover:text-white t-ease mr-2";
         deleteButton.textContent = "Delete";
+        deleteButton.addEventListener("click", function () {
+          let agentId = agent.id;
+          deleteCrawlerById(agentId);
+          window.location.href = "profile.html";
+        });
 
         var editButton = document.createElement("button");
         editButton.type = "submit";
         editButton.className =
           "btn text-primary border-primary border-2 hover:bg-primary hover:text-white t-ease";
         editButton.textContent = "Edit";
+        editButton.addEventListener("click", function () {
+          let agentId = agent.id;
+          localStorage.setItem("agentId", agentId);
+          window.location.href = "updateAgent.html";
+        });
 
         var startButton = document.createElement("button");
         startButton.type = "submit";
@@ -187,6 +201,23 @@ const stopCrawlerById = async (id) => {
   try {
     const response = await fetch(`${API_URL}/agents/stop/${id}`, {
       method: "POST",
+    });
+
+    if (!response.ok) {
+      throw new Error("Network response was not ok");
+    }
+
+    const data = await response.json();
+    console.log(data);
+  } catch (error) {
+    console.error("Error:", error);
+  }
+};
+
+const deleteCrawlerById = async (id) => {
+  try {
+    const response = await fetch(`${API_URL}/agents/${id}`, {
+      method: "DELETE",
     });
 
     if (!response.ok) {
