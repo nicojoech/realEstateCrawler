@@ -46,7 +46,8 @@ function validateForm(
   password,
   confirmPassword
 ) {
-  const passwordPattern = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/;
+  const passwordPattern =
+    /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
   const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
   if (password !== confirmPassword) {
@@ -56,7 +57,8 @@ function validateForm(
 
   if (!passwordPattern.test(password)) {
     alert(
-      "Password must be at least 8 characters long and include at least one letter and one number."
+      "Password must be at least 8 characters long and a combination of:\n" +
+        "uppercase/lowercase characters, digits and symbols"
     );
     return false;
   }

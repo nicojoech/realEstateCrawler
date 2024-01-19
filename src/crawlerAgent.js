@@ -70,20 +70,47 @@ document.addEventListener("DOMContentLoaded", function () {
 
       console.log(agentData);
 
-      // Beispiel: Sende die Daten an das Backend mit fetch
-      fetch(`${API_URL}/agents/`, {
-        method: "POST",
-        body: JSON.stringify(agentData),
-        headers: {
-          "Content-Type": "application/json",
-        },
+      // Erster Fetch-Aufruf
+      fetch(`${API_URL}/users/${agentData.user_id}/count`, {
+        method: "GET",
       })
-        .then((response) => response.json())
-        .then(() => {
-          window.location.href = "/src/profile.html";
+        .then((response) => {
+          if (!response.ok) {
+            throw new Error(
+              `Network response was not ok: ${response.statusText}`
+            );
+          }
+          return response.json();
         })
-        .catch((error) => {
-          console.error("Error:", error);
+        .then((data) => {
+          console.log(data);
+
+          if (data < 3) {
+            return fetch(`${API_URL}/agents/`, {
+              method: "POST",
+              body: JSON.stringify(agentData),
+              headers: {
+                "Content-Type": "application/json",
+              },
+            })
+              .then((secondResponse) => {
+                if (!secondResponse.ok) {
+                  throw new Error(
+                    `Network response was not ok: ${secondResponse.statusText}`
+                  );
+                }
+                return secondResponse.json();
+              })
+              .then(() => {
+                window.location.href = "/src/profile.html";
+              })
+              .catch((error) => {
+                console.error("Error:", error);
+              });
+          } else {
+            alert("You cannot create more than 3 search agents!");
+            return;
+          }
         });
     });
 
