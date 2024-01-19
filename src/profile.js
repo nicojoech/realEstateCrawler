@@ -119,6 +119,12 @@ const fetchAgents = async (id) => {
           "btn text-primary border-primary border-2 hover:bg-primary hover:text-white t-ease";
         editButton.textContent = "Edit";
         editButton.addEventListener("click", function () {
+          if (startButton.style.display === "none") {
+            var errorModal = document.getElementById("my-modal");
+            errorModal.classList.remove("hidden");
+            return;
+          }
+
           let agentId = agent.id;
           localStorage.setItem("agentId", agentId);
           window.location.href = "updateAgent.html";
